@@ -1,10 +1,10 @@
 /*global define */
 
-define(
-[],
-function () {
+define( function () {
 
 	'use strict';
+
+	// Do not call this with cyclical structures!
 
 	return function deepEqual ( a, b ) {
 		var i, keys;
