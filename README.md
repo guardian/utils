@@ -17,6 +17,7 @@ define([ 'guiLibs/core' ], function ( core ) {
 define([ 'utils/core/extend' ], function ( extend ) {
 	extend( target, source );
 });
+```
 
 ...and avoid bundling a whole load of extra gubbins that we're not using, just because it happens to share a namespace with something we are.
 
