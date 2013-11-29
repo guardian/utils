@@ -1,13 +1,11 @@
-/*global define */
-
 define(
 [],
 function () {
 
 	'use strict';
 
-	return function ( csv, delimiter ) {
-		var pattern, rows, matches, matchedValue, matchedDelimiter;
+	return function csvToArray ( csv, delimiter ) {
+		var pattern, rows, row, matches, matchedValue, matchedDelimiter;
 
 		delimiter = ( delimiter || ',' );
 
@@ -29,9 +27,8 @@ function () {
 
 		// Create an array to hold our data. Give the array
 		// a default empty first row.
-		rows = [
-			[]
-		];
+		rows = [];
+		rows[0] = row = [];
 
 		// Create an array to hold our individual pattern
 		// matching groups.
@@ -52,7 +49,7 @@ function () {
 
 				// Since we have reached a new row of data,
 				// add an empty row to our data array.
-				rows.push([]);
+				rows.push( row = [] );
 			}
 
 
@@ -73,7 +70,7 @@ function () {
 
 			// Now that we have our value string, let's add
 			// it to the data array.
-			rows[ rows.length - 1 ].push( matchedValue );
+			row.push( matchedValue );
 		}
 
 		// Return the parsed data.

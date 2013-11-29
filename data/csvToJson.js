@@ -1,13 +1,11 @@
-/*global define */
-
 define(
 [ './csvToArray' ],
 function ( csvToArray ) {
 
 	'use strict';
 
-	return function ( csv, delimiter, headerRow ) {
-		var rows, row, records, record, i, j, headerRow, numHeaders, key, datum;
+	return function csvToJson ( csv, delimiter, headerRow ) {
+		var rows, row, records, record, i, len, j, numHeaders, key, datum, hasData;
 
 		rows = csvToArray( csv, delimiter );
 
@@ -30,10 +28,12 @@ function ( csvToArray ) {
 
 		records = [];
 
-		i = rows.length;
-		while ( i-- ) {
+		len = rows.length;
+		for ( i = 0; i < len; i += 1 ) {
 			row = rows[i];
-			records[i] = record = {};
+			record = {};
+
+			hasData = false;
 
 			j = headerRow.length;
 			while ( j-- ) {
@@ -50,69 +50,16 @@ function ( csvToArray ) {
 					} catch ( err ) {}
 
 					record[ headerRow[j] ] = datum;
+					hasData = true;
 				}
+			}
+
+			if ( hasData ) {
+				records[ records.length ] = record;
 			}
 		}
 
 		return records;
 	};
-
-	/*data.SpreadsheetArrayToObjects = function(sheetRows, keysRow){
-		keysRow = keysRow || 0;
-
-		console.log( 'sheetRows', sheetRows );
-		console.log( 'keysRow', keysRow );
-
-		var i;
-		var j;
-		var row;
-
-		//search until we find a nonempty row, that should be the row with column names
-		if(!keysRow){
-			for(i = 0; i < sheetRows.length; ++i){
-				row = sheetRows[i];
-				var rowHasData = false;
-				for(j = 0; j < row.length; ++j){
-					if(!!row[j]){
-						rowHasData = true;
-						break;
-					}
-				}
-				if(rowHasData){
-					break;
-				}
-			}
-			keysRow = i;
-		}
-
-		var result = [];
-
-		var keys = sheetRows[keysRow];
-
-		var numCols = keys.length;
-		var numRows = sheetRows.length;
-
-		for(i = keysRow+1; i < numRows; ++i){
-			row = sheetRows[i];
-
-			var rowObj = {};
-			for(j = 0; j < numCols; ++j){
-				var colName = keys[j];
-				var value = row[j];
-
-				var floatVal = parseFloat(value);
-				if(''+floatVal === ''+value){
-					value = floatVal;
-				}
-
-				rowObj[j] = value;
-				rowObj[colName] = value;
-			}
-
-			result.push(rowObj);
-		}
-
-		return result;
-	};*/
 
 });
