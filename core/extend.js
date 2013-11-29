@@ -1,8 +1,4 @@
-/*global define */
-
-define(
-[],
-function () {
+define( function () {
 
 	'use strict';
 
@@ -10,7 +6,7 @@ function () {
 		var i, source, key;
 
 		for ( i = 1; i < arguments.length; i += 1 ) {
-			var source = arguments[i];
+			source = arguments[i];
 			
 			for ( key in source ) {
 				if ( source.hasOwnProperty( key ) ) {

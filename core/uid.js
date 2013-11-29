@@ -1,8 +1,4 @@
-/*global define */
-
-define(
-[],
-function () {
+define( function () {
 
 	'use strict';
 
@@ -14,7 +10,7 @@ function () {
 				uids[ name ] = 0;
 			}
 
-			return name + '_' + ++uids[ name ];
+			return name + '_' + ( ++uids[ name ] );
 		}
 
 		return ++uid;

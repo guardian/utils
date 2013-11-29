@@ -1,5 +1,3 @@
-/*global define */
-
 define( function () {
 
 	'use strict';
@@ -7,7 +5,7 @@ define( function () {
 	// Do not call this with cyclical structures!
 
 	return function deepEqual ( a, b ) {
-		var i, keys;
+		var i, keysA, keysB;
 
 		if ( a === null && b === null ) {
 			return true;
@@ -16,6 +14,10 @@ define( function () {
 		if ( typeof a === 'object' ) {
 			if ( typeof b !== 'object' ) {
 				return false;
+			}
+
+			if ( a === b ) {
+				return true;
 			}
 
 			if ( Array.isArray( a ) ) {
@@ -43,7 +45,7 @@ define( function () {
 				return false;
 			}
 
-			i = keysA.length
+			i = keysA.length;
 
 			while ( i-- ) {
 				if ( !deepEqual( a[ keysA[i] ], b[ keysA[i] ] ) ) {
