@@ -1,8 +1,6 @@
-/*global define */
-
 define(
-[ './getNode' ],
-function ( getNode ) {
+[ '../analytics', './getNode' ],
+function ( analytics, getNode ) {
 
 	'use strict';
 

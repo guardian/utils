@@ -1,5 +1,3 @@
-/* global setTimeout */
-
 define( function ( require ) {
 
 	'use strict';
@@ -7,7 +5,7 @@ define( function ( require ) {
 	require( 'utils/compatibility' ); // Date.now() shim
 
 	return function ( fn, options ) {
-		var active, timeout, nextAllowed, scheduled;
+		var nextAllowed, scheduled;
 
 		if ( typeof options !== 'object' ) {
 			options = {

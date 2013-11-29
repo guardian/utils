@@ -1,10 +1,6 @@
-/*global define, window, navigator */
-define( function (require) {
+define([ '../core/extend', '../core/events' ], function ( extend, events ) {
 	
 	'use strict';
-
-	var extend = require( '../core/extend' );
-	var events = require( '../core/events' );
 
 	var autoplay = extend({
 		checked: false,
@@ -14,7 +10,6 @@ define( function (require) {
 	// Original source: https://github.com/Modernizr/Modernizr/pull/917
 	(function () {
 		var timeout;
-		var waitTime = 300;
 		var elem = document.createElement('video');
 		var elemStyle = elem.style;
 

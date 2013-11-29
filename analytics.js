@@ -1,10 +1,8 @@
-/*global define, window, document */
 define( function () {
 	
 	'use strict';
 
-	var analytics = function () {
-	};
+	var analytics = {};
 
 	/**
 	 *
@@ -14,10 +12,8 @@ define( function () {
 	 * @param {number} [opt_value]
 	 * @param {string} [opt_noninteraction]
 	 */
-	analytics.event = function (category, action, opt_label, opt_value, opt_noninteraction) {
-		var args = [].splice.call(arguments, 0);
-		args.splice(0, 0, '_trackEvent');
-		gaPush.apply(null, args);
+	analytics.event = function ( category, action, opt_label, opt_value, opt_noninteraction ) {
+		gaPush( '_trackEvent', category, action, opt_label, opt_value, opt_noninteraction );
 	};
 
 	/**

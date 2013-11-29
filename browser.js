@@ -1,4 +1,3 @@
-/*global define, window, navigator */
 define( function () {
 
 	'use strict';

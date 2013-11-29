@@ -1,8 +1,6 @@
-/*global define */
-
 define(
-[ './getNode' ],
-function ( getNode ) {
+[ '../analytics', './getNode' ],
+function ( analytics, getNode ) {
 
 	'use strict';
 
@@ -31,9 +29,7 @@ function ( getNode ) {
 		node.parentNode.insertBefore( anchor, node );
 		anchor.appendChild( node );
 
-		anchor.addEventListener( 'click', function ( event ) {
-			var width, height, left, top, tops, openedWin;
-
+		anchor.addEventListener( 'click', function () {
 			analytics.event( 'sharing', 'emshare' );
 			
 			if ( options.callback ) {
